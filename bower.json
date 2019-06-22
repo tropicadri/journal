@@ -19,7 +19,8 @@
     "iron-list": "PolymerElements/iron-list#^2.0.14",
     "paper-button": "PolymerElements/paper-button#^2.1.1",
     "paper-input": "PolymerElements/paper-input#^2.2.2",
-    "app-media": "PolymerElements/app-media#^0.10.0"
+    "app-media": "PolymerElements/app-media#^0.10.0",
+    "iron-image": "PolymerElements/iron-image#2.1.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"

@@ -59,7 +59,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		const index = this.items.indexOf(this.contact);
 		if(index >= 0){
 		  const path='items.'+ index + '.url';
-	      this.set(path, window.URL.createObjectURL(this.photo));
+      console.log('what is the path ' + path);
+      const url = window.URL.createObjectURL(this.photo);
+      console.log('and the url ' + url);
+	      this.set(path, url);
 		}
     console.log('it is getting here.');
 		window.history.pushState({}, '', 'view1');
