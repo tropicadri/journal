@@ -25,18 +25,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-	        <contact-camera photo={{photo}} active$=[[active]]></contact-camera>	     	    
+	        <contact-camera photo={{photo}} active$=[[active]]></contact-camera>
   </template>
 
   <script>
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
-	  
+
       static get properties() {
         return {
           photo: {
             type: Blob,
-			observer: 'photoChanged_',
+			      observer: 'photoChanged_',
             },
             contact: {
               type: Object,
@@ -50,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               type: Array,
               value: [],
 			  notify: true,
-            },			 				
+            },
           }
         };
 
@@ -61,17 +61,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		  const path='items.'+ index + '.url';
 	      this.set(path, window.URL.createObjectURL(this.photo));
 		}
+    console.log('it is getting here.');
 		window.history.pushState({}, '', 'view1');
 		window.dispatchEvent(new CustomEvent('location-changed'));
-           
-    }
-	
-	activeChanged_(){
-	}
-	  
+
     }
 
-    	
+	activeChanged_(){
+	}
+
+    }
 
     window.customElements.define(MyView2.is, MyView2);
   </script>
