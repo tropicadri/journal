@@ -12,12 +12,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="contact-camera">
+<dom-module id="journal-camera">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
       }
     </style>
@@ -53,8 +52,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class ContactCamera extends Polymer.Element {
-      static get is() { return 'contact-camera'; }
+    class JournalCamera extends Polymer.Element {
+      static get is() { return 'journal-camera'; }
       static get properties() {
         return {
            photo: {
@@ -94,6 +93,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		   }
 
     }
-    window.customElements.define(ContactCamera.is, ContactCamera);
+    window.customElements.define(JournalCamera.is, JournalCamera);
   </script>
 </dom-module>
