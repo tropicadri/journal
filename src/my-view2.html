@@ -30,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
     <template is="dom-if" if="[[!cameraVisible]]">
       <journal-entry mode='entry-big'
-                     entry$="{{entry}}"
+                     entry$="[[entry]]"
                      on-tap="goToList">
       </journal-entry>
     </template>
@@ -75,22 +75,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		  const index = this.items.indexOf(this.entry);
 		  if(index >= 0) {
 		    const path='items.'+ index + '.url';
-        console.log('what is the path ' + path);
         const url = window.URL.createObjectURL(this.photo);
-        console.log('and the url ' + url);
-	      this.set(path, url);
-		  }
+        this.entry.url = url;
+	      this.notifyPath(path, url);
 
+		  }
+      this.set('entry', null);
 		 window.history.pushState({}, null, 'view1');
 		 window.dispatchEvent(new CustomEvent('location-changed'));
     }
 
     computeCameraVisible(entry){
-      console.log('whats the url' + this.entry.url);
-      return this.entry.url == undefined;
+      return this.entry == null || this.entry.url == undefined;
     }
 
     goToList(e){
+      this.set('entry', null);
       window.history.pushState({}, null, 'view1');
     	window.dispatchEvent(new CustomEvent('location-changed'));
 	  }

@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <template>
         <div>
            <journal-entry mode='entry-small'
-                          entry$="{{item}}"
+                          entry$="[[item]]"
                           on-tap="goToPhoto">
            </journal-entry>
         </div>
@@ -74,8 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			   const index = this.captions.indexOf(this.newCaption);
 			   if (index == -1 && this.newCaption != 'Dogs') {
 				   this.push('captions',this.newCaption);
-			     this.set('entry', {caption: this.newCaption});
-			     this.push('items', this.entry );
+			     this.push('items', {caption: this.newCaption} );
 	       }
 			   this.set('newCaption', "");
 		   }

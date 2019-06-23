@@ -139,11 +139,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             value: function() {
               return [{caption: "Dogs",
                       url: "./images/chuckypenny.jpg"}];
-            }
+            },
+            notify: true,
           },
 
           entry: {
             type: Object,
+            notify: true,
+            observer:'_entryChanged',
           },
         };
       }
@@ -151,6 +154,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get observers() {
         return [
           '_routePageChanged(routeData.page)',
+          '_entryChanged(entry)',
         ];
       }
 
@@ -166,6 +170,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       _pageChanged(page) {}
+
+      _entryChanged(entry){}
 
       _showPage404() {
         this.page = 'view404';
