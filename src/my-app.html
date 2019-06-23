@@ -133,17 +133,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
           rootPath: String,
-		  testing: String,
+		      testing: String,
           items: {
             type: Array,
             value: function() {
               return [{caption: "Mom"}];
             }
           },
+
           entry: {
             type: Object,
-            },
-
+          },
         };
       }
 
@@ -164,8 +164,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
-      _pageChanged(page) {
-      }
+      _pageChanged(page) {}
 
       _showPage404() {
         this.page = 'view404';

@@ -67,27 +67,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       add(){
-	       if(this.newCaption.length > 0){
-			        const index = this.captions.indexOf(this.newCaption);
-			        if(index == -1 && this.newCaption != 'Mom'){
-				         this.push('captions',this.newCaption);
-			           this.set('entry', {caption: this.newCaption});
-			           this.push('items', this.entry );
+	     if(this.newCaption.length > 0){
+			   const index = this.captions.indexOf(this.newCaption);
+			   if (index == -1 && this.newCaption != 'Mom') {
+				   this.push('captions',this.newCaption);
+			     this.set('entry', {caption: this.newCaption});
+			     this.push('items', this.entry );
 	       }
-			this.set('newCaption', "");
-		 }
-    }
+			   this.set('newCaption', "");
+		   }
+      }
 
 	  goToPhoto(e){
-		this.set('entry',this.get(['items',e.model.index]));
+		  this.set('entry',this.get(['items',e.model.index]));
   		window.history.pushState({}, '', 'view2');
   		window.dispatchEvent(new CustomEvent('location-changed'));
 	  }
 
-	  activeChanged_(){
-  		//console.log("active changed in view 1");
-  	  }
-    }
+	  activeChanged_(){}
+
+ }
 
     window.customElements.define(MyView1.is, MyView1);
   </script>

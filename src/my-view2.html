@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-	        <journal-camera photo={{photo}} active$=[[active]]></journal-camera>
+	  <journal-camera photo={{photo}} active$=[[active]]></journal-camera>
   </template>
 
   <script>
@@ -37,44 +37,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           photo: {
             type: Blob,
 			      observer: 'photoChanged_',
-            },
-            entry: {
-              type: Object,
-              notify: true,
-              },
-  			active: {
-  				type: Boolean,
-				observer: 'activeChanged_'
-  			},
-            items: {
-              type: Array,
-              value: [],
-			  notify: true,
-            },
-          }
-        };
+          },
+
+          entry: {
+            type: Object,
+            notify: true,
+          },
+
+  			  active: {
+  				  type: Boolean,
+				    observer: 'activeChanged_'
+  			 },
+
+        items: {
+          type: Array,
+          value: [],
+			    notify: true,
+        },
+      }
+    };
 
     photoChanged_() {
-        window.URL = window.URL || window.webkitURL;
-		const index = this.items.indexOf(this.entry);
-		if(index >= 0){
-		  const path='items.'+ index + '.url';
-      console.log('what is the path ' + path);
-      const url = window.URL.createObjectURL(this.photo);
-      console.log('and the url ' + url);
+      window.URL = window.URL || window.webkitURL;
+		  const index = this.items.indexOf(this.entry);
+		  if(index >= 0) {
+		    const path='items.'+ index + '.url';
+        console.log('what is the path ' + path);
+        const url = window.URL.createObjectURL(this.photo);
+        console.log('and the url ' + url);
 	      this.set(path, url);
-		}
-    console.log('it is getting here.');
-		window.history.pushState({}, '', 'view1');
-		window.dispatchEvent(new CustomEvent('location-changed'));
+		  }
 
+		 window.history.pushState({}, '', 'view1');
+		 window.dispatchEvent(new CustomEvent('location-changed'));
     }
 
-	activeChanged_(){
-	}
+	activeChanged_(){}
 
-    }
+  }
 
-    window.customElements.define(MyView2.is, MyView2);
+  window.customElements.define(MyView2.is, MyView2);
   </script>
 </dom-module>

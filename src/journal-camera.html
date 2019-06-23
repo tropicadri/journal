@@ -77,8 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			this.$.imagecapture.takePhoto();
 		}
 
-		activeChanged_(){
-		}
+		activeChanged_(){}
 
 		computeStreamForCapture_(stream) {
       return stream || undefined;
@@ -88,10 +87,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if ( newStream == null && !!oldStream ) {
 			       oldStream.getTracks().forEach((track) => {
 			         track.stop();
-			       });
+           });
 			   }
 		   }
-
     }
     window.customElements.define(JournalCamera.is, JournalCamera);
   </script>
