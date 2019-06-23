@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			  type: Boolean,
 			  observer: 'activeChanged_'
 		  },
-		  names: {
+		  captions: {
 			  type:Array,
 			  value:[],
 		  },
@@ -68,10 +68,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       add(){
 	       if(this.newCaption.length > 0){
-			        const index = this.names.indexOf(this.newCaption);
+			        const index = this.captions.indexOf(this.newCaption);
 			        if(index == -1 && this.newCaption != 'Mom'){
-				         this.push('names',this.newCaption);
-			           this.set('entry', {name: this.newCaption});
+				         this.push('captions',this.newCaption);
+			           this.set('entry', {caption: this.newCaption});
 			           this.push('items', this.entry );
 	       }
 			this.set('newCaption', "");
