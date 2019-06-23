@@ -25,11 +25,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-	  <journal-camera photo={{photo}} active$=[[active]]></journal-camera>
+    <template is="dom-if" if="[[cameraVisible]]">
+	     <journal-camera photo={{photo}} active$=[[active]]></journal-camera>
+    </template>
+    <template is="dom-if" if="[[!cameraVisible]]">
+      <journal-entry mode='entry-big'
+                     entry$="{{entry}}"
+                     on-tap="goToList">
+      </journal-entry>
+    </template>
   </template>
 
   <script>
-    class MyView2 extends Polymer.Element {
+    class MyView2 extends Polymer.GestureEventListeners(Polymer.Element)  {
       static get is() { return 'my-view2'; }
 
       static get properties() {
@@ -47,14 +55,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   			  active: {
   				  type: Boolean,
 				    observer: 'activeChanged_'
-  			 },
+  			  },
 
-        items: {
-          type: Array,
-          value: [],
-			    notify: true,
-        },
-      }
+          items: {
+            type: Array,
+            value: [],
+			      notify: true,
+          },
+
+          cameraVisible: {
+            type: Boolean,
+            computed: 'computeCameraVisible(entry)',
+          },
+        }
     };
 
     photoChanged_() {
@@ -68,11 +81,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	      this.set(path, url);
 		  }
 
-		 window.history.pushState({}, '', 'view1');
+		 window.history.pushState({}, null, 'view1');
 		 window.dispatchEvent(new CustomEvent('location-changed'));
     }
 
-	activeChanged_(){}
+    computeCameraVisible(entry){
+      console.log('whats the url' + this.entry.url);
+      return this.entry.url == undefined;
+    }
+
+    goToList(e){
+      console.log('going back');
+      window.history.pushState({}, null, 'view1');
+    	window.dispatchEvent(new CustomEvent('location-changed'));
+	  }
+
+	  activeChanged_(){}
 
   }
 

@@ -19,28 +19,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-	    .entry-photo{
+	    .entry-small{
 	  	  width:50px;
 		    height:50px;
 		    border-radius:50%;
-	  }
+	    }
+
+      .entry-big{
+        width:100px;
+        height:100px;
+      }
     </style>
 
     <div class ='card'>
-	     <iron-image class="entry-photo" src="[[entry.url]]" sizing="cover">
+	     <iron-image class$=[[mode]] src$="[[entry.url]]" sizing="cover">
        </iron-image>
        [[entry.caption]]
    </div>
+
   </template>
 
   <script>
-    class JournalEntry extends Polymer.Element {
+    class JournalEntry extends Polymer.Element  {
       static get is() { return 'journal-entry'; }
       static get properties() {
         return {
           entry: {
             type: Object,
-            }
+          },
+
+          mode:{
+            type:String
+          },
+
           }
         };
       }

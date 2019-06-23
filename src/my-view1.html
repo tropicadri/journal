@@ -28,7 +28,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <iron-list id="list" items="[[items]]" as="item" selection-enabled multi-selection>
       <template>
         <div>
-           <journal-entry  entry="{{item}}" on-tap="goToPhoto"></journal-entry>
+           <journal-entry mode='entry-small'
+                          entry$="{{item}}"
+                          on-tap="goToPhoto">
+           </journal-entry>
         </div>
       </template>
     </iron-list>
@@ -69,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       add(){
 	     if(this.newCaption.length > 0){
 			   const index = this.captions.indexOf(this.newCaption);
-			   if (index == -1 && this.newCaption != 'Mom') {
+			   if (index == -1 && this.newCaption != 'Dogs') {
 				   this.push('captions',this.newCaption);
 			     this.set('entry', {caption: this.newCaption});
 			     this.push('items', this.entry );
@@ -80,8 +83,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 	  goToPhoto(e){
 		  this.set('entry',this.get(['items',e.model.index]));
-  		window.history.pushState({}, '', 'view2');
-  		window.dispatchEvent(new CustomEvent('location-changed'));
+      window.history.pushState({}, null, 'view2');
+    	window.dispatchEvent(new CustomEvent('location-changed'));
 	  }
 
 	  activeChanged_(){}
