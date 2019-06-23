@@ -50,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             type:String,
             value: ""
           },
-          contact: {
+          entry: {
             type: Object,
 		  	    value: {},
             notify: true,
@@ -71,15 +71,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			        const index = this.names.indexOf(this.newCaption);
 			        if(index == -1 && this.newCaption != 'Mom'){
 				         this.push('names',this.newCaption);
-			           this.set('contact', {name: this.newCaption});
-			           this.push('items', this.contact );
+			           this.set('entry', {name: this.newCaption});
+			           this.push('items', this.entry );
 	       }
 			this.set('newCaption', "");
 		 }
     }
 
 	  goToPhoto(e){
-		this.set('contact',this.get(['items',e.model.index]));
+		this.set('entry',this.get(['items',e.model.index]));
   		window.history.pushState({}, '', 'view2');
   		window.dispatchEvent(new CustomEvent('location-changed'));
 	  }

@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             type: Blob,
 			      observer: 'photoChanged_',
             },
-            contact: {
+            entry: {
               type: Object,
               notify: true,
               },
@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     photoChanged_() {
         window.URL = window.URL || window.webkitURL;
-		const index = this.items.indexOf(this.contact);
+		const index = this.items.indexOf(this.entry);
 		if(index >= 0){
 		  const path='items.'+ index + '.url';
       console.log('what is the path ' + path);
