@@ -24,14 +24,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <paper-button raised class="indigo" on-click="add">add</paper-button>
-        <paper-input value="{{newCaption}}"></paper-input>
-        <iron-list id="list" items="[[items]]" as="item" selection-enabled multi-selection>
+    <paper-input value="{{newCaption}}"></paper-input>
+    <iron-list id="list" items="[[items]]" as="item" selection-enabled multi-selection>
       <template>
         <div>
-           <journal-entry mode='entry-small'
-                          entry$="[[item]]"
-                          on-tap="goToPhoto">
-           </journal-entry>
+          <journal-entry mode='entry-small'
+                         entry$="[[item]]"
+                         on-tap="goToPhoto">
+          </journal-entry>
         </div>
       </template>
     </iron-list>
@@ -40,8 +40,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class MyView1 extends Polymer.GestureEventListeners(Polymer.Element) {
       static get is() { return 'my-view1'; }
-
-
       static get properties() {
         return {
           items: {
@@ -58,14 +56,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		  	    value: {},
             notify: true,
           },
-		  active: {
-			  type: Boolean,
-			  observer: 'activeChanged_'
-		  },
-		  captions: {
-			  type:Array,
-			  value:[],
-		  },
+		      active: {
+			      type: Boolean,
+			      observer: 'activeChanged_'
+		      },
+		      captions: {
+			      type:Array,
+			      value:[],
+            notify:true,
+		      },
         };
       }
 
@@ -80,11 +79,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		   }
       }
 
-	  goToPhoto(e){
-		  this.set('entry',this.get(['items',e.model.index]));
-      window.history.pushState({}, null, 'view2');
-    	window.dispatchEvent(new CustomEvent('location-changed'));
-	  }
+	    goToPhoto(e){
+		    this.set('entry',this.get(['items',e.model.index]));
+        window.history.pushState({}, null, 'view2');
+    	  window.dispatchEvent(new CustomEvent('location-changed'));
+	    }
 
 	  activeChanged_(){}
 
