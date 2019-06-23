@@ -27,9 +27,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class ='card'>
-	     <iron-image class="entry-photo" src="[[person.url]]" sizing="cover">
+	     <iron-image class="entry-photo" src="[[entry.url]]" sizing="cover">
        </iron-image>
-       [[person.name]]
+       [[entry.name]]
    </div>
   </template>
 
@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get is() { return 'journal-entry'; }
       static get properties() {
         return {
-          person: {
+          entry: {
             type: Object,
             }
           }

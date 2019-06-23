@@ -28,7 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <iron-list id="list" items="[[items]]" as="item" selection-enabled multi-selection>
       <template>
         <div>
-           <journal-entry  person="{{item}}" on-tap="goToPhoto"></journal-entry>
+           <journal-entry  entry="{{item}}" on-tap="goToPhoto"></journal-entry>
         </div>
       </template>
     </iron-list>
