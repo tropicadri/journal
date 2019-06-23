@@ -46,7 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           stream="[[computeStreamForCapture_(stream_)]]"
           last-photo="{{photo}}">
         </app-media-image-capture>
-	      <paper-button raised class="indigo" on-click="takePhoto">take</paper-button>
+	      <paper-button raised class="indigo" on-click="takePhoto">Capture Memory</paper-button>
 
 	  </div>
   </template>
@@ -83,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return stream || undefined;
 		}
 
-		streamChanged_(newStream, oldStream){
+		streamChanged_(newStream, oldStream) {
       if ( newStream == null && !!oldStream ) {
 			       oldStream.getTracks().forEach((track) => {
 			         track.stop();
