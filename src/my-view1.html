@@ -12,24 +12,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="contact-item.html">
+<link rel="import" href="journal-entry.html">
 
 <dom-module id="my-view1">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
       }
     </style>
 
     <paper-button raised class="indigo" on-click="add">add</paper-button>
-        <paper-input value="{{newName}}"></paper-input>
+        <paper-input value="{{newCaption}}"></paper-input>
         <iron-list id="list" items="[[items]]" as="item" selection-enabled multi-selection>
-      <template>        
+      <template>
         <div>
-           <contact-item  person="{{item}}" on-tap="goToPhoto"></contact-item>            
+           <journal-entry  person="{{item}}" on-tap="goToPhoto"></journal-entry>
         </div>
       </template>
     </iron-list>
@@ -38,22 +37,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class MyView1 extends Polymer.Element {
       static get is() { return 'my-view1'; }
-	  
-	  
+
+
       static get properties() {
         return {
           items: {
             type: Array,
-			notify: true,  
-			value: [],
+			      notify: true,
+			      value: [],
           },
-          newName:{
+          newCaption:{
             type:String,
             value: ""
           },
           contact: {
             type: Object,
-		  	value: {}, 
+		  	    value: {},
             notify: true,
           },
 		  active: {
@@ -63,29 +62,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		  names: {
 			  type:Array,
 			  value:[],
-		  },					  
+		  },
         };
       }
 
-      add(){		  
-	    if(this.newName.length > 0){
-			const index = this.names.indexOf(this.newName);
-			if(index == -1 && this.newName != 'Mom'){
-				this.push('names',this.newName);
-			    this.set('contact', {name: this.newName});  
-			    this.push('items', this.contact );
-	            
-			}
-			this.set('newName', ""); 		    
-		 }				
-      }
-	  
+      add(){
+	       if(this.newCaption.length > 0){
+			        const index = this.names.indexOf(this.newCaption);
+			        if(index == -1 && this.newCaption != 'Mom'){
+				         this.push('names',this.newCaption);
+			           this.set('contact', {name: this.newCaption});
+			           this.push('items', this.contact );
+	       }
+			this.set('newCaption', "");
+		 }
+    }
+
 	  goToPhoto(e){
 		this.set('contact',this.get(['items',e.model.index]));
   		window.history.pushState({}, '', 'view2');
   		window.dispatchEvent(new CustomEvent('location-changed'));
 	  }
-	  
+
 	  activeChanged_(){
   		//console.log("active changed in view 1");
   	  }

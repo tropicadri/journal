@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="contact-item">
+<dom-module id="journal-entry">
   <template>
     <style include="shared-styles">
       :host {
@@ -34,8 +34,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class ContactItem extends Polymer.Element {
-      static get is() { return 'contact-item'; }
+    class JournalEntry extends Polymer.Element {
+      static get is() { return 'journal-entry'; }
       static get properties() {
         return {
           person: {
@@ -45,6 +45,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
 
-    window.customElements.define(ContactItem.is, ContactItem);
+    window.customElements.define(JournalEntry.is, JournalEntry);
   </script>
 </dom-module>
