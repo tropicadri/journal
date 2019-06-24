@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <template is="dom-if" if="[[cameraVisible]]">
-	     <journal-camera photo={{photo}} active$=[[active]]></journal-camera>
+       <journal-camera photo={{photo}} active$=[[active]]></journal-camera>
     </template>
     <template is="dom-if" if="[[!cameraVisible]]">
       <journal-entry mode='entry-big'
@@ -44,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return {
           photo: {
             type: Blob,
-			      observer: 'photoChanged_',
+            observer: 'photoChanged_',
           },
 
           entry: {
@@ -52,15 +52,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             notify: true,
           },
 
-  			  active: {
-  				  type: Boolean,
-				    observer: 'activeChanged_'
-  			  },
+          active: {
+            type: Boolean,
+            observer: 'activeChanged_'
+          },
 
           items: {
             type: Array,
             value: [],
-			      notify: true,
+            notify: true,
           },
 
           cameraVisible: {
@@ -72,17 +72,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     photoChanged_() {
       window.URL = window.URL || window.webkitURL;
-		  const index = this.items.indexOf(this.entry);
-		  if(index >= 0) {
-		    const path='items.'+ index + '.url';
+      const index = this.items.indexOf(this.entry);
+      if(index >= 0) {
+        const path='items.'+ index + '.url';
         const url = window.URL.createObjectURL(this.photo);
         this.entry.url = url;
-	      this.notifyPath(path, url);
+        this.notifyPath(path, url);
 
-		  }
+      }
       this.set('entry', null);
-		  window.history.pushState({}, null, 'view1');
-		  window.dispatchEvent(new CustomEvent('location-changed'));
+      window.history.pushState({}, null, 'view1');
+      window.dispatchEvent(new CustomEvent('location-changed'));
     }
 
     computeCameraVisible(entry){
@@ -92,10 +92,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     goToList(e){
       this.set('entry', null);
       window.history.pushState({}, null, 'view1');
-    	window.dispatchEvent(new CustomEvent('location-changed'));
-	  }
+      window.dispatchEvent(new CustomEvent('location-changed'));
+    }
 
-	  activeChanged_(){}
+    activeChanged_(){}
 
   }
 

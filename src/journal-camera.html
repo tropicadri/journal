@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-	  <div>
+    <div>
       <app-media-devices
           id="devices"
           kind="videoinput"
@@ -46,9 +46,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           stream="[[computeStreamForCapture_(stream_)]]"
           last-photo="{{photo}}">
         </app-media-image-capture>
-	      <paper-button raised class="indigo" on-click="takePhoto">Capture Memory</paper-button>
+        <paper-button raised class="indigo" on-click="takePhoto">Capture Memory</paper-button>
 
-	  </div>
+    </div>
   </template>
 
   <script>
@@ -61,35 +61,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             notify: true,
            },
 
-    	     active: {
-    		    type: Boolean,
-  			    observer: 'activeChanged_'
-    	     },
+           active: {
+            type: Boolean,
+            observer: 'activeChanged_'
+           },
 
-    	     stream_: {
-    		    type: Object,
-  			    observer: 'streamChanged_'
-    		   },
+           stream_: {
+            type: Object,
+            observer: 'streamChanged_'
+           },
           }
         };
 
-		takePhoto(){
-			this.$.imagecapture.takePhoto();
-		}
+    takePhoto(){
+      this.$.imagecapture.takePhoto();
+    }
 
-		activeChanged_(){}
+    activeChanged_(){}
 
-		computeStreamForCapture_(stream) {
+    computeStreamForCapture_(stream) {
       return stream || undefined;
-		}
+    }
 
-		streamChanged_(newStream, oldStream) {
+    streamChanged_(newStream, oldStream) {
       if ( newStream == null && !!oldStream ) {
-			       oldStream.getTracks().forEach((track) => {
-			         track.stop();
+             oldStream.getTracks().forEach((track) => {
+               track.stop();
            });
-			   }
-		   }
+         }
+       }
     }
     window.customElements.define(JournalCamera.is, JournalCamera);
   </script>
