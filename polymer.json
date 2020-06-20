@@ -1,22 +1,18 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
-"fragments": [
-  "src/my-view1.html",
-  "src/my-view2.html",
-  "src/my-view404.html"
-],
-  "sources": [
-    "images/**/*",
-    "src/**/*"
+  "shell": "src/my-app.js",
+  "fragments": [
+    "src/my-view1.js",
+    "src/my-view2.js",
+    "src/my-view404.js"
   ],
+  "sources": ["images/**/*", "src/**/*"],
   "extraDependencies": [
-    "bower_components/webcomponentsjs/*.js",
-    "!bower_components/webcomponentsjs/gulpfile.js",
-    "manifest.json"
+    "manifest.json",
+    "node_modules/@webcomponents/webcomponentsjs/**"
   ],
   "lint": {
-    "rules": ["polymer-2"]
+    "rules": ["polymer-3"]
   },
   "builds": [
     {
@@ -28,5 +24,7 @@
     {
       "preset": "es6-unbundled"
     }
-  ]
+  ],
+  "moduleResolution": "node",
+  "npm": true
 }
