@@ -23,20 +23,20 @@
   "author": "Tropicadri",
   "dependencies": {
     "@polymer/app-layout": "^3.0.0",
+    "@polymer/app-media": "^3.0.1",
     "@polymer/app-route": "^3.0.0",
     "@polymer/iron-flex-layout": "^3.0.0",
     "@polymer/iron-iconset-svg": "^3.0.0",
+    "@polymer/iron-image": "^3.0.0",
+    "@polymer/iron-list": "^3.0.0",
     "@polymer/iron-media-query": "^3.0.0",
     "@polymer/iron-pages": "^3.0.0",
     "@polymer/iron-selector": "^3.0.0",
-    "@polymer/paper-icon-button": "^3.0.0",
-    "@polymer/polymer": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.0.0",
-    "@polymer/paper-checkbox": "^3.0.0",
-    "@polymer/iron-list": "^3.0.0",
     "@polymer/paper-button": "^3.0.0",
+    "@polymer/paper-checkbox": "^3.0.0",
+    "@polymer/paper-icon-button": "^3.0.0",
     "@polymer/paper-input": "^3.0.0",
-    "@polymer/app-media": "^3.0.0",
-    "@polymer/iron-image": "^3.0.0"
+    "@polymer/polymer": "^3.0.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0"
   }
 }

@@ -7,42 +7,40 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 
-import '@polymer/app-media/app-media-image-capture.js';
-import '@polymer/app-media/app-media-devices.js';
-import '@polymer/app-media/app-media-stream.js';
-import '@polymer/app-media/app-media-video.js';
-import '@polymer/paper-button/paper-button.js';
-import './shared-styles.js';
-import './journal-camera.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
-class MyView2 extends GestureEventListeners(PolymerElement)  {
+import "@polymer/paper-button/paper-button.js";
+import "./shared-styles.js";
+import "./journal-camera.js";
+import { html } from "@polymer/polymer/lib/utils/html-tag.js";
+import { GestureEventListeners } from "@polymer/polymer/lib/mixins/gesture-event-listeners.js";
+class MyView2 extends GestureEventListeners(PolymerElement) {
   static get template() {
     return html`
-    <style include="shared-styles">
-      :host {
-        display: block;
-      }
-    </style>
-    <template is="dom-if" if="[[cameraVisible]]">
-       <journal-camera photo="{{photo}}" active\$="[[active]]"></journal-camera>
-    </template>
-    <template is="dom-if" if="[[!cameraVisible]]">
-      <journal-entry mode="entry-big" entry\$="[[entry]]" on-tap="goToList">
-      </journal-entry>
-    </template>
-`;
+      <style include="shared-styles">
+        :host {
+          display: block;
+        }
+      </style>
+      <template is="dom-if" if="[[cameraVisible]]">
+        <journal-camera photo="{{photo}}" active$="[[active]]"></journal-camera>
+      </template>
+      <template is="dom-if" if="[[!cameraVisible]]">
+        <journal-entry mode="entry-big" entry$="[[entry]]" on-tap="goToList">
+        </journal-entry>
+      </template>
+    `;
   }
 
-  static get is() { return 'my-view2'; }
+  static get is() {
+    return "my-view2";
+  }
 
   static get properties() {
     return {
       photo: {
         type: Blob,
-        observer: 'photoChanged_',
+        observer: "photoChanged_",
       },
 
       entry: {
@@ -52,7 +50,7 @@ class MyView2 extends GestureEventListeners(PolymerElement)  {
 
       active: {
         type: Boolean,
-        observer: 'activeChanged_'
+        observer: "activeChanged_",
       },
 
       items: {
@@ -63,37 +61,36 @@ class MyView2 extends GestureEventListeners(PolymerElement)  {
 
       cameraVisible: {
         type: Boolean,
-        computed: 'computeCameraVisible(entry)',
+        computed: "computeCameraVisible(entry)",
       },
-    }
-}
+    };
+  }
 
   photoChanged_() {
     window.URL = window.URL || window.webkitURL;
     const index = this.items.indexOf(this.entry);
-    if(index >= 0) {
-      const path='items.'+ index + '.url';
+    if (index >= 0) {
+      const path = "items." + index + ".url";
       const url = window.URL.createObjectURL(this.photo);
       this.entry.url = url;
       this.notifyPath(path, url);
-
     }
-    this.set('entry', null);
-    window.history.pushState({}, null, 'view1');
-    window.dispatchEvent(new CustomEvent('location-changed'));
+    this.set("entry", null);
+    window.history.pushState({}, null, "view1");
+    window.dispatchEvent(new CustomEvent("location-changed"));
   }
 
-  computeCameraVisible(entry){
+  computeCameraVisible(entry) {
     return this.entry == null || this.entry.url == undefined;
   }
 
-  goToList(e){
-    this.set('entry', null);
-    window.history.pushState({}, null, 'view1');
-    window.dispatchEvent(new CustomEvent('location-changed'));
+  goToList(e) {
+    this.set("entry", null);
+    window.history.pushState({}, null, "view1");
+    window.dispatchEvent(new CustomEvent("location-changed"));
   }
 
-  activeChanged_(){}
+  activeChanged_() {}
 }
 
 window.customElements.define(MyView2.is, MyView2);

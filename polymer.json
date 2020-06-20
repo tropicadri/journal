@@ -1,11 +1,6 @@
 {
   "entrypoint": "index.html",
   "shell": "src/my-app.js",
-  "fragments": [
-    "src/my-view1.js",
-    "src/my-view2.js",
-    "src/my-view404.js"
-  ],
   "sources": ["images/**/*", "src/**/*"],
   "extraDependencies": [
     "manifest.json",

@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App description",
+  "name": "Photo Journal",
+  "short_name": "Photo Journal",
+  "description": "Simple photo journal sample",
   "icons": [
     {
       "src": "images/manifest/icon-192x192.png",
