@@ -22,8 +22,13 @@ class JournalCamera extends PolymerElement {
     return html`
       <style include="shared-styles">
         :host {
-          display: block;
+          display: flex;
+          flex-direction: column;
           padding: 10px;
+        }
+
+        .button {
+          width: 100%;
         }
       </style>
 
@@ -32,24 +37,33 @@ class JournalCamera extends PolymerElement {
         </app-media-devices>
 
         <app-media-stream
+          id="vidstream"
           video-device="[[camera]]"
-          stream="{{videoStream}}"
-          active
+          stream="{{stream_}}"
         >
         </app-media-stream>
 
-        <app-media-video source="[[videoStream]]" autoplay muted>
+        <app-media-video
+          contain
+          source="[[stream_]]"
+          autoplay="[[active]]"
+          muted
+        >
         </app-media-video>
 
         <app-media-image-capture
           id="imagecapture"
-          stream="[[videoStream]]"
+          stream="[[stream_]]"
           focus-mode="single-shot"
           red-eye-reduction
           last-photo="{{photo}}"
         >
         </app-media-image-capture>
-        <paper-button raised="" class="indigo" on-click="takePhoto"
+        <paper-button
+          class="button"
+          raised=""
+          class="indigo"
+          on-click="takePhoto"
           >Capture Memory</paper-button
         >
       </div>
@@ -65,6 +79,14 @@ class JournalCamera extends PolymerElement {
         type: Blob,
         notify: true,
       },
+
+      active: {
+        type: Boolean,
+        observer: "activeChanged_",
+      },
+      stream_: {
+        type: Object,
+      },
     };
   }
 
@@ -72,17 +94,17 @@ class JournalCamera extends PolymerElement {
     this.$.imagecapture.takePhoto();
   }
 
-  activeChanged_() {}
+  activeChanged_(newActive, oldActive) {
+    if (newActive) {
+      this.$.vidstream.active = true;
+    } else {
+      if (this.stream_) {
+        this.stream_.getTracks().forEach((track) => {
+          track.stop();
+        });
+      }
 
-  computeStreamForCapture_(stream) {
-    return stream || undefined;
-  }
-
-  streamChanged_(newStream, oldStream) {
-    if (newStream == null && !!oldStream) {
-      oldStream.getTracks().forEach((track) => {
-        track.stop();
-      });
+      this.$.vidstream.active = false;
     }
   }
 }

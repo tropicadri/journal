@@ -90,7 +90,7 @@ class MyView2 extends GestureEventListeners(PolymerElement) {
     window.dispatchEvent(new CustomEvent("location-changed"));
   }
 
-  activeChanged_() {}
+  activeChanged_(oldActive, newActive) {}
 }
 
 window.customElements.define(MyView2.is, MyView2);
